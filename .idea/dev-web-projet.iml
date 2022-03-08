@@ -133,6 +133,8 @@
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/phar-io/manifest" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/laminas/laminas-code" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/doctrine-fixtures-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/data-fixtures" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

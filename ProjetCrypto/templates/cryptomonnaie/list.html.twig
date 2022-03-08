@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<table class="table text-center">
+        <tr>
+            <th class="active text-center">id</th>
+            <th class="active text-center">market cap</th>
+            <th class="active text-center">projet</th>
+            <th class="active text-center">price</th>
+            <th class="active text-center">date creation</th>
+        </tr>
+         {% for crypto in cryptos %}$
+            <tr>
+                <td><a href="{{ path('cryptomonnaie.show', {id: crypto.id}) }}">{{crypto.id}}</a></td>
+                <td>{{crypto.marketCap}}</td>
+                <td>{{crypto.projet}}</td>
+                <td>{{crypto.price}}</td>
+                <td>{{crypto.dateCreation|date('Y-m-d')}}</td>
+            </tr>
+
+         {% endfor %}
+
+{% endblock %}

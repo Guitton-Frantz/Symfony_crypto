@@ -129,6 +129,8 @@
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/laminas/laminas-code" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/composer" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/data-fixtures" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
