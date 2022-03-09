@@ -4,20 +4,30 @@
 <table class="table text-center">
         <tr>
             <th class="active text-center">id</th>
-            <th class="active text-center">market cap</th>
+            <th class="active text-center">Nom</th>
+            <th class="active text-center">Sigle</th>
+            <th class="active text-center">Market cap</th>
             <th class="active text-center">projet</th>
-            <th class="active text-center">price</th>
-            <th class="active text-center">date creation</th>
+            <th class="active text-center">Price</th>
+            <th class="active text-center">Date creation</th>
+            <th class="active text-center">Action</th>
         </tr>
-         {% for crypto in cryptos %}$
+         {% for crypto in cryptos %}
             <tr>
-                <td><a href="{{ path('cryptomonnaie.show', {id: crypto.id}) }}">{{crypto.id}}</a></td>
+                <td>{{crypto.id}}</td>
+                <td><a href="{{ path('cryptomonnaie.show', {id: crypto.id}) }}">{{crypto.name}}</a></td>
+                <td>{{crypto.slug}}</td>
                 <td>{{crypto.marketCap}}</td>
                 <td>{{crypto.projet}}</td>
                 <td>{{crypto.price}}</td>
                 <td>{{crypto.dateCreation|date('Y-m-d')}}</td>
+                <td><a href="{{ path('cryptomonnaie.delete', {id: crypto.id}) }}"class="btn btn-danger">Supprimer</td>
+                <td> <a href="{{ path('cryptomonnaie.edit', {id: crypto.id}) }}">Modifier</td>
+
             </tr>
 
          {% endfor %}
+         <td><a href="{{ path('cryptomonnaie.create')}}" class="btn btn-success"</a>Ajouter</td>
+
 
 {% endblock %}
