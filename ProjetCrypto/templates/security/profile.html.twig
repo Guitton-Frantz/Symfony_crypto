@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<td>Bienvenue : {{ last_username }}</td>
+<table class="table text-center">
+
+<tr>
+            <th class="active text-center">id</th>
+            <th class="active text-center">Nom</th>
+            <th class="active text-center">Sigle</th>
+            <th class="active text-center">Market cap</th>
+            <th class="active text-center">projet</th>
+            <th class="active text-center">Price</th>
+            <th class="active text-center">Date creation</th>
+            <th class="active text-center">Action</th>
+        </tr>
+{% for favori in favoris  %}
+
+
+            <tr>
+                <td>{{favori.id}}</td>
+                <td>{{favori.name}}</td>
+                <td>{{favori.slug}}</td>
+                <td>{{favori.marketCap}}</td>
+                <td>{{favori.projet}}</td>
+                <td>{{favori.price}}</td>
+                <td>{{favori.dateCreation|date('Y-m-d')}}</td>
+
+            </tr>
+
+{% endfor %}
+{% endblock %}

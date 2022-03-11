@@ -55,11 +55,11 @@ class CryptomonnaieController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $em) : Response
     {
-        $stage = new Cryptomonnaie();
-        $form = $this->createForm(CryptoType::class, $stage);
+        $crypto = new Cryptomonnaie();
+        $form = $this->createForm(CryptoType::class, $crypto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($stage);
+            $em->persist($crypto);
             $em->flush();
             return $this->redirectToRoute('cryptomonnaie.list');
         }
