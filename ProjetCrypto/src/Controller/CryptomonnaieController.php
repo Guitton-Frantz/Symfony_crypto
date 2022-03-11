@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Cryptomonnaie;
 use App\Form\CryptoType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,6 +45,9 @@ class CryptomonnaieController extends AbstractController
 
     /**
      * Créer une nouvelle crypto.
+     * Require ROLE_USER for *every* controller method in this class.
+     *
+     * @IsGranted("ROLE_USER")
      * @Route("new-crypto", name="cryptomonnaie.create")
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -65,6 +69,10 @@ class CryptomonnaieController extends AbstractController
     }
     /**
      * Éditer une cryptomonnaie.
+     *
+     * Require ROLE_USER for *every* controller method in this class.
+     *
+     * @IsGranted("ROLE_USER")
      * @Route("cryptomonnaie/{id}/edit", name="cryptomonnaie.edit")
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -85,6 +93,9 @@ class CryptomonnaieController extends AbstractController
 
     /**
      * Supprimer un stage.
+     * Require ROLE_USER for *every* controller method in this class.
+     *
+     * @IsGranted("ROLE_USER")
      * @Route("stage/{id}/delete", name="cryptomonnaie.delete")
      * @param Request $request
      * @param Cryptomonnaie $crypto

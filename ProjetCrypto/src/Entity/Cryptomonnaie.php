@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CryptomonnaieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,16 @@ class Cryptomonnaie
      * @ORM\Column(type="string", length=5)
      */
     private $slug;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoris")
+     */
+    private $fans;
+
+    public function __construct()
+    {
+        $this->fans = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +166,33 @@ class Cryptomonnaie
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFans(): Collection
+    {
+        return $this->fans;
+    }
+
+    public function addFan(User $fan): self
+    {
+        if (!$this->fans->contains($fan)) {
+            $this->fans[] = $fan;
+            $fan->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFan(User $fan): self
+    {
+        if ($this->fans->removeElement($fan)) {
+            $fan->removeFavori($this);
+        }
 
         return $this;
     }
