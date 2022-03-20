@@ -44,6 +44,7 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/profile", name="app_profile")
+     * @IsGranted("ROLE_USER")
      */
     public function profile(AuthenticationUtils $authenticationUtils, EntityManagerInterface $em): Response
     {
@@ -62,7 +63,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * Créer une nouvelle crypto.
+     * ajouter une nouvelle crypto favorite.
      * Require ROLE_USER for *every* controller method in this class.
      *
      * @IsGranted("ROLE_USER")
@@ -71,7 +72,7 @@ class SecurityController extends AbstractController
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function create(AuthenticationUtils $authenticationUtils,Request $request, EntityManagerInterface $em) : Response
+    public function addFavoris(AuthenticationUtils $authenticationUtils,Request $request, EntityManagerInterface $em) : Response
     {
 
         // get the login error if there is one
@@ -79,14 +80,20 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $user = $user = ($em->getRepository(User::class)->findBy(array('email' => $lastUsername)))[0];
-        // Recupere les favoris de l'utilisateur actuel
-        $favoris = $user->getFavoris();
-        $form = $this->createForm(FavorisType::class, ['favoris' => $favoris]);
+        // Recupere les crypto
+        $cryptos = $em->getRepository(Cryptomonnaie::class)->findAll();
+        $options = [];
+        foreach ($cryptos as $crypto){
+            $options[$crypto->getName()] = $crypto;
+        }
+
+        $form = $this->createForm(FavorisType::class, ['cryptos' => $options]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($favoris);
+             //echo $form->get('favoris')->getData();
+            $user->addFavori($form->get('favoris')->getData());
             $em->flush();
-            //return $this->redirectToRoute('cryptomonnaie.list');
+            return $this->redirectToRoute('app_profile');
         }
         return $this->render('Security/add-favoris.html.twig', [
             'form' => $form->createView(),
