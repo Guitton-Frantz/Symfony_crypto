@@ -92,7 +92,7 @@ class CryptomonnaieController extends AbstractController
     }
 
     /**
-     * Supprimer un stage.
+     * Supprimer une crypto.
      * Require ROLE_USER for *every* controller method in this class.
      *
      * @IsGranted("ROLE_USER")

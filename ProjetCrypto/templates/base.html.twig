@@ -39,12 +39,16 @@
                 </li>
                 <a class="glyphicon glyphicon-user" href="{{ path('app_profile') }}">{{'app_profile'|trans}}</a>
                 <li>
-                <li>
-                <a class="glyphicon glyphicon-log-in" href="{{ path('app_login') }}">{{'app_login'|trans}}</a>
-                </li>
-                <li>
-                <a class="glyphicon glyphicon-log-out" href="{{ path('app_logout') }}">{{'app_logout'|trans}}</a>
-                </li>
+                {% if not app.user %}
+                    <li>
+                    <a class="glyphicon glyphicon-log-in" href="{{ path('app_login') }}">{{'app_login'|trans}}</a>
+                    </li>
+                {% endif %}
+                {% if app.user %}
+                    <li>
+                    <a class="glyphicon glyphicon-log-out" href="{{ path('app_logout') }}">{{'app_logout'|trans}}</a>
+                    </li>
+                {% endif %}
 
             </ul>
         </div>

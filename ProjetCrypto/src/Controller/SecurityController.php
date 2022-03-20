@@ -43,6 +43,15 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * @Route("/register", name="app
+     * @return void
+     */
+    public function create(): void
+    {
+
+    }
+
+    /**
      * @Route("/profile", name="app_profile")
      * @IsGranted("ROLE_USER")
      */
