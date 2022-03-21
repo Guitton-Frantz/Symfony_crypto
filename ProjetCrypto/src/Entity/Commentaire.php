@@ -6,7 +6,7 @@ use App\Repository\CommentaireRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Entity\Cryptomonnaie;
 /**
  * @ORM\Entity(repositoryClass=CommentaireRepository::class)
  */
@@ -25,14 +25,13 @@ class Commentaire
     private $com;
 
     /**
-     * @ORM\OneToMany(targetEntity=Cryptomonnaie::class, mappedBy="commentaire")
+     * @ORM\ManyToOne(targetEntity=Cryptomonnaie::class, inversedBy="commentaire")
      */
     private $cryptomonnaie;
 
-    public function __construct()
-    {
-        $this->cryptomonnaie = new ArrayCollection();
-    }
+    
+
+    
 
     public function getId(): ?int
     {
@@ -51,33 +50,17 @@ class Commentaire
         return $this;
     }
 
-    /**
-     * @return Collection<int, Cryptomonnaie>
-     */
-    public function getCryptomonnaie(): Collection
+    public function getCryptomonnaie(): ?Cryptomonnaie
     {
         return $this->cryptomonnaie;
     }
 
-    public function addCryptomonnaie(Cryptomonnaie $cryptomonnaie): self
+    public function setCryptomonnaie(?Cryptomonnaie $cryptomonnaie): self
     {
-        if (!$this->cryptomonnaie->contains($cryptomonnaie)) {
-            $this->cryptomonnaie[] = $cryptomonnaie;
-            $cryptomonnaie->setCommentaire($this);
-        }
+        $this->cryptomonnaie = $cryptomonnaie;
 
         return $this;
     }
 
-    public function removeCryptomonnaie(Cryptomonnaie $cryptomonnaie): self
-    {
-        if ($this->cryptomonnaie->removeElement($cryptomonnaie)) {
-            // set the owning side to null (unless already changed)
-            if ($cryptomonnaie->getCommentaire() === $this) {
-                $cryptomonnaie->setCommentaire(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

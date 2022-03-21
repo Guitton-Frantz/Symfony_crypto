@@ -6,6 +6,8 @@ use App\Repository\CryptomonnaieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Commentaire;
+
 
 /**
  * @ORM\Entity(repositoryClass=CryptomonnaieRepository::class)
@@ -44,11 +46,7 @@ class Cryptomonnaie
      */
     private $dateCreation;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Commentaire::class, inversedBy="cryptomonnaie")
-     */
-    private $commentaire;
-
+    
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -64,9 +62,17 @@ class Cryptomonnaie
      */
     private $fans;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="cryptomonnaie")
+     */
+    private $commentaire;
+
+    
+
     public function __construct()
     {
         $this->fans = new ArrayCollection();
+        $this->commentaire = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,17 +140,7 @@ class Cryptomonnaie
         return $this;
     }
 
-    public function getCommentaire(): ?Commentaire
-    {
-        return $this->commentaire;
-    }
-
-    public function setCommentaire(?Commentaire $commentaire): self
-    {
-        $this->commentaire = $commentaire;
-
-        return $this;
-    }
+   
 
     public function getName(): ?string
     {
@@ -196,4 +192,36 @@ class Cryptomonnaie
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaire(): Collection
+    {
+        return $this->commentaire;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire[] = $commentaire;
+            $commentaire->setCryptomonnaie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaire->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getCryptomonnaie() === $this) {
+                $commentaire->setCryptomonnaie(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
 }

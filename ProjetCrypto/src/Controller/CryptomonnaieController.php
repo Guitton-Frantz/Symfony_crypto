@@ -44,6 +44,21 @@ class CryptomonnaieController extends AbstractController
 
 
     /**
+     * Afficher commentaire d'une crypto.
+     * @Route("/cryptomonnaie/{id}/comm", name="cryptomonnaie.afficherComm", requirements={"id" = "\d+"})
+     * @param Cryptomonnaie $crypto
+     * @return Response
+     */
+    public function showComm(Cryptomonnaie $crypto) : Response
+    {
+        return $this->render('cryptomonnaie/showComm.html.twig', [
+            'crypto' => $crypto,
+        ]);
+    }
+
+
+
+    /**
      * Créer une nouvelle crypto.
      * Require ROLE_USER for *every* controller method in this class.
      *
