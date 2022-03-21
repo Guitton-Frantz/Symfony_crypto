@@ -12,11 +12,13 @@ class FavorisType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $this->favoris = $options['favoris'];
-        print_r($options['favoris']);
+        $choices = $options['data']['cryptos'];
+        //print_r($choices);
+
         $builder
-            ->add('favoris'/*, EntityType::class, [
-        'choices' => $this->favoris,]*/
+            ->add('favoris', ChoiceType::class, array(
+                    'choices' => $choices,)
+
             )
         ;
     }
@@ -25,7 +27,9 @@ class FavorisType extends AbstractType
     {
         $resolver->setDefaults([
             // Configure your form options here
-            'favoris' => null,
+            //'favoris' => null,
+            'choices_as_values' => true,
+
         ]);
     }
 }

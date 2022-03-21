@@ -95,7 +95,7 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -138,7 +138,8 @@ class User implements UserInterface
     public function addFavori(Cryptomonnaie $favori): self
     {
         if (!$this->favoris->contains($favori)) {
-            $this->favoris[] = $favori;
+            //$this->favoris[] += $favori;
+            $this->favoris->add($favori);
         }
 
         return $this;

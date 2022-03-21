@@ -1,0 +1,15 @@
+{# templates/registration/register.html.twig #}
+{% if app.user %}
+    <div class="mb-3">
+        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+    </div>
+{% endif %}
+{% if not app.user %}
+
+{{ form_start(form) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.password) }}
+
+<button type="submit">Register!</button>
+{{ form_end(form) }}
+{% endif %}

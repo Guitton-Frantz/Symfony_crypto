@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
     <title>{% block title %}Site pour les fans de cryptomonnaies{% endblock %}</title>
+=======
+    <title>{% block title %}Cryptomonnaies{% endblock %}</title>
+>>>>>>> 4eaf8770ec0ef37d49e4542cf275cbca1a2f1514
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -15,16 +19,53 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
+<<<<<<< HEAD
             <a class="navbar-brand" href="#">Cryptomonnaies</a>
+=======
+            <a class="navbar-brand" href="{{ path('cryptomonnaie.list') }}">Liste des cryptos</a>
+            {# <a class="navbar-brand" href="{{ path('app_admin_dashboard_index') }}">Admin</a>
+            <a href="{{ path('cryptomonnaie.create') }}" class="btn btn-success navbar-btn">{{'crypto.creer'|trans}}</a>
+            #}
+>>>>>>> 4eaf8770ec0ef37d49e4542cf275cbca1a2f1514
         </div>
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
                 <li>
                     <div>
                         <a class="navbar-brand" href="{{ path('cryptomonnaie.list') }}">liste des Cryptomonnaies</a>
                     </div>
                 </li>
+=======
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-globe"></span> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {#
+                        {% for key,locale in locales %}
+                        <li>
+                            <a href="{{ path(app.request.get('_route'),app.request.attributes.get('_route_params')|merge({'_locale': key})) }}">{{locale}}</a>
+                        </li>
+                        {% endfor %}
+                    #}
+                    </ul>
+                </li>
+                </li>
+                <a class="glyphicon glyphicon-user" href="{{ path('app_profile') }}">{{'app_profile'|trans}}</a>
+                <li>
+                {% if not app.user %}
+                    <li>
+                    <a class="glyphicon glyphicon-log-in" href="{{ path('app_login') }}">{{'app_login'|trans}}</a>
+                    </li>
+                {% endif %}
+                {% if app.user %}
+                    <li>
+                    <a class="glyphicon glyphicon-log-out" href="{{ path('app_logout') }}">{{'app_logout'|trans}}</a>
+                    </li>
+                {% endif %}
+
+>>>>>>> 4eaf8770ec0ef37d49e4542cf275cbca1a2f1514
             </ul>
         </div>
     </div>
