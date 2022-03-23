@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Cryptomonnaie;
+use App\Form\CryptoSearchType;
 use App\Form\CryptoType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -133,5 +134,32 @@ class CryptomonnaieController extends AbstractController
         $em->remove($crypto);
         $em->flush();
         return $this->redirectToRoute('cryptomonnaie.list');
+    }
+
+    /**
+     * Permet de rechercher une crypto selon un formulaire
+     * @Route("/search", name="cryptomonnaie.search")
+     * @return void
+     */
+    public function search(Request $request, EntityManagerInterface $em) : Response
+    {
+        $data = new Cryptomonnaie();
+        $form = $this->createForm(CryptoSearchType::class, $data);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $cryptos = $em->getRepository(Cryptomonnaie::class)->findBy(
+                ["name" => $data->getName(),
+                "price" => $data->getPrice(),
+                "dateCreation" => $data->getDateCreation(),
+                "MarketCap" => $data->getMarketCap(),
+                "slug" => $data->getSlug()]
+            );
+
+            return $this->render('cryptomonnaie/list.html.twig', ['cryptos' => $cryptos]);
+        }
+
+        return $this->render('cryptomonnaie/search.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

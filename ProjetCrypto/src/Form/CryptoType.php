@@ -18,46 +18,20 @@ class CryptoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('MarketCap', TextType::class, [
-                'constraints' => [new NotBlank(),
-                    new Length(['max' => 255]),
-                ]
-            ])
-            ->add('projet',  TextType::class, [
-                'constraints' => [new NotBlank(),
-                    new Length(['max' => 255]),
-                ]
-            ])
-            ->add('categorie',  TextType::class, [
-                'constraints' => [new NotBlank(),
-                    new Length(['max' => 255]),
-                ]
-            ])
-            ->add('price',  IntegerType::class, [
-                'constraints' => [new NotBlank(),
-                    new Length(['max' => 11]),
-                ]
-            ])
-            ->add('dateCreation', DateType::class, [
-                'constraints' => [new NotBlank()]
-            ])
-            ->add('name',  TextType::class, [
-                'constraints' => [new NotBlank(),
-                    new Length(['max' => 255]),
-                ]
-            ])
-            ->add('slug',  TextType::class, [
-                'constraints' => [new NotBlank(),
-                    new Length(['max' => 5]),
-                ]
-            ])
+            ->add('MarketCap')
+            ->add('projet')
+            ->add('categorie')
+            ->add('price')
+            ->add('dateCreation')
+            ->add('name')
+            ->add('slug')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Cryptomonnaie::class,
+            //'data_class' => Cryptomonnaie::class,
         ]);
     }
 }
