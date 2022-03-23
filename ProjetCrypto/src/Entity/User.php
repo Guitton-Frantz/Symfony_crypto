@@ -41,9 +41,15 @@ class User implements UserInterface
      */
     private $favoris;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user")
+     */
+    private $commentaires;
+
     public function __construct()
     {
         $this->favoris = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,6 +154,36 @@ class User implements UserInterface
     public function removeFavori(Cryptomonnaie $favori): self
     {
         $this->favoris->removeElement($favori);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getUser() === $this) {
+                $commentaire->setUser(null);
+            }
+        }
 
         return $this;
     }
