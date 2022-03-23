@@ -44,7 +44,7 @@ class CommentaireController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $comm->setCryptomonnaie($crypto);
-            $comm->setUser($us);
+            //$comm->setUser($us);
             $em->persist($comm);
             $em->flush();
             return $this->redirectToRoute('cryptomonnaie.list');
