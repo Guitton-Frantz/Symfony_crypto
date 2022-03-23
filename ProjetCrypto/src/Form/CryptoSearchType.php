@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Cryptomonnaie;
-use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -13,18 +12,33 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class CryptoType extends AbstractType
+class CryptoSearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('MarketCap')
-            ->add('projet')
-            ->add('categorie')
-            ->add('price')
-            ->add('dateCreation')
-            ->add('name')
-            ->add('slug')
+            ->add('projet',  TextType::class, [
+                'constraints' => [new Length(['max' => 255]),
+                ]
+            ])
+            ->add('categorie',  TextType::class, [
+                'constraints' => [new Length(['max' => 255]),
+                ]
+            ])
+            ->add('price',  IntegerType::class, [
+                'constraints' => [new Length(['max' => 11]),
+                ]
+            ])
+            ->add('dateCreation', DateType::class)
+            ->add('name',  TextType::class, [
+                'constraints' => [new Length(['max' => 255]),
+                ]
+            ])
+            ->add('slug',  TextType::class, [
+                'constraints' => [new Length(['max' => 5]),
+                ]
+            ])
         ;
     }
 
@@ -32,6 +46,7 @@ class CryptoType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Cryptomonnaie::class,
+
         ]);
     }
 }
