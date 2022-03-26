@@ -3,3 +3,44 @@ app_login: Login
 user_registration: Register
 app_logout: Logout
 app_profile: Profile
+'Liste des cryptomonnaies': 'Cryptocurrencies list'
+Cryptomonnaies: Cryptocurrencies
+'Création cryptomonnaie :': 'Create Cryptocurrency :'
+Enregistrer: __Enregistrer
+'Avertissement !': 'Avertissement !'
+'Vous êtes en train de supprimer le crypto suivant :': 'You are deleting this crypto'
+'Nom :': 'Name :'
+'Sigle :': 'Slug :'
+'Price :': 'Price :'
+'Projet :': 'Project :'
+'Date de publication :': 'Publication Date :'
+Annuler: __Annuler
+'Êtes vous sûr ??': 'Are you sure ??'
+Supprimer: Delete
+id: id
+Nom: Name
+Sigle: Slug
+'Market cap': 'Market cap'
+projet: project
+Categorie: category
+Price: Price
+'Date creation': 'Creation date'
+Action: Action
+Ajouter: Add
+'Recherche cryptomonnaie :': 'Search cryptocurrency :'
+Chercher: __Chercher
+'Détails de la': 'Details of'
+'Publié le': 'Published the'
+'Projet:': 'Project:'
+'Categorie de la Crypto:': 'Crypto category:'
+'Liste des Commentaires': 'Comment list'
+'écrit par': 'Written by'
+'Ajouter commentaire': 'Add comment'
+'You are logged in as': 'You are logged in as'
+'S''inscrire': Register
+'Ajout favoris :': 'Add favorites:'
+'Log in!': 'Log in!'
+Password: Password
+'Sign in': 'Sign in'
+'Ajouter un favoris': 'Add a favorite'
+Bienvenue: Welcome

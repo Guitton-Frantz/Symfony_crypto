@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title>{% block title %}Cryptos{% endblock %}</title>
+    <title>{% block title %}{{ 'Cryptomonnaies'|trans }}{% endblock %}</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -17,7 +17,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ path('cryptomonnaie.list') }}">Liste des cryptomonnaies</a>
+            <a class="navbar-brand" href="{{ path('cryptomonnaie.list') }}">{{ 'Liste des cryptomonnaies'|trans }}</a>
             {# <a class="navbar-brand" href="{{ path('app_admin_dashboard_index') }}">Admin</a>
             <a href="{{ path('cryptomonnaie.create') }}" class="btn btn-success navbar-btn">{{'crypto.creer'|trans}}</a>
             #}
