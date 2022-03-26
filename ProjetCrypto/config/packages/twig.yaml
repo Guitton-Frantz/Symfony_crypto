@@ -4,6 +4,6 @@ twig:
     strict_variables: '%kernel.debug%'
     exception_controller: null
     form_themes:
-        - 'bootstrap_5_layout.html.twig.html.twig'
+        - 'bootstrap_3_horizontal_layout.html.twig'
     globals:
         locales: '%languages%'

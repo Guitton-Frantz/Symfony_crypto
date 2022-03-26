@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @Route("/{_locale}/")
+ * @Route("/{_locale}")
  */
 class RegistrationController extends AbstractController
 {
