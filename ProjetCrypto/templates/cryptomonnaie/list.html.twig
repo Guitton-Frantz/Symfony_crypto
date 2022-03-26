@@ -3,6 +3,7 @@
 {% block body %}
 <table class="table text-center">
         <tr>
+<<<<<<< HEAD
             <th class="active text-center">id</th>
             <th class="active text-center">Nom</th>
             <th class="active text-center">Sigle</th>
@@ -12,6 +13,17 @@
             <th class="active text-center">Price</th>
             <th class="active text-center">Date creation</th>
             <th class="active text-center">Action</th>
+=======
+            <th class="active text-center">{{'id'|trans}}</th>
+            <th class="active text-center">{{'Nom'|trans}}</th>
+            <th class="active text-center">{{'Sigle'|trans}}</th>
+            <th class="active text-center">{{'Market cap'|trans}}</th>
+            <th class="active text-center">{{'projet'|trans}}</th>
+            <th class="active text-center">{{'Categorie'|trans}}</th>
+            <th class="active text-center">{{'Price'|trans}}</th>
+            <th class="active text-center">{{'Date creation'|trans}}</th>
+            <th class="active text-center">{{'Action'|trans}}</th>
+>>>>>>> 6367c8411318a70e643e508996a7340a6b6b4224
         </tr>
          {% for crypto in cryptos %}
             <tr>
@@ -30,7 +42,7 @@
 
          {% endfor %}
          
-         <td><a href="{{ path('cryptomonnaie.create')}}" class="btn btn-success"</a>Ajouter</td>
+         <td><a href="{{ path('cryptomonnaie.create')}}" class="btn btn-success"</a>{{'Ajouter'|trans}}</td>
 
 
 {% endblock %}

@@ -15,6 +15,9 @@ use App\Entity\Commentaire;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use App\Form\CommType;
 
+/**
+ * @Route("/{_locale}/")
+ */
 class CommentaireController extends AbstractController
 {
     /**

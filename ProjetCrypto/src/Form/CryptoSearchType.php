@@ -17,27 +17,30 @@ class CryptoSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('MarketCap')
+            ->add('MarketCap', IntegerType::class, [
+                'constraints' => [new Length(['max' => 11])],
+                'required' => false,
+            ])
             ->add('projet',  TextType::class, [
-                'constraints' => [new Length(['max' => 255]),
-                ]
+                'constraints' => [new Length(['max' => 255])],
+                'required' => false,
             ])
             ->add('categorie',  TextType::class, [
-                'constraints' => [new Length(['max' => 255]),
-                ]
+                'constraints' => [new Length(['max' => 255])],
+                'required' => false,
             ])
             ->add('price',  IntegerType::class, [
-                'constraints' => [new Length(['max' => 11]),
-                ]
+                'constraints' => [new Length(['max' => 11])],
+                'required' => false,
             ])
             ->add('dateCreation', DateType::class)
             ->add('name',  TextType::class, [
-                'constraints' => [new Length(['max' => 255]),
-                ]
+                'constraints' => [new Length(['max' => 255])],
+                'required' => false,
             ])
             ->add('slug',  TextType::class, [
-                'constraints' => [new Length(['max' => 5]),
-                ]
+                'constraints' => [new Length(['max' => 5])],
+                'required' => false,
             ])
         ;
     }

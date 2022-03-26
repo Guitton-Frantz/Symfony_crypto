@@ -1,0 +1,2 @@
+parameters:
+  languages: {'fr':'Français','en':'English','de':'Deutsch'}

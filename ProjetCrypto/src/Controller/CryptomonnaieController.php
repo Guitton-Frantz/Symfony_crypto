@@ -12,7 +12,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+/**
+ * @Route("/{_locale}")
+ */
 class CryptomonnaieController extends AbstractController
 {
 
@@ -146,13 +148,31 @@ class CryptomonnaieController extends AbstractController
         $data = new Cryptomonnaie();
         $form = $this->createForm(CryptoSearchType::class, $data);
         $form->handleRequest($request);
+        $dataSearch = [];
         if ($form->isSubmitted() && $form->isValid()) {
+            if($data->getMarketCap() !== null){
+                $dataSearch['MarketCap'] = $data->getMarketCap();
+            }
+            if($data->getSlug() !== null){
+                $dataSearch['slug'] = $data->getSlug();
+            }
+            if($data->getDateCreation() !== null){
+                $dataSearch['dateCreation'] = $data->getDateCreation();
+            }
+            if($data->getPrice() !== null){
+                $dataSearch['price'] = $data->getPrice();
+            }
+            if($data->getCategorie() !== null){
+                $dataSearch['categorie'] = $data->getCategorie();
+            }
+            if($data->getName() !== null){
+                $dataSearch['name'] = $data->getName();
+            }
+            if($data->getProjet() !== null){
+                $dataSearch['projet'] = $data->getProjet();
+            }
             $cryptos = $em->getRepository(Cryptomonnaie::class)->findBy(
-                ["name" => $data->getName(),
-                "price" => $data->getPrice(),
-                "dateCreation" => $data->getDateCreation(),
-                "MarketCap" => $data->getMarketCap(),
-                "slug" => $data->getSlug()]
+                $dataSearch
             );
 
             return $this->render('cryptomonnaie/list.html.twig', ['cryptos' => $cryptos]);

@@ -1,0 +1,46 @@
+cryptomonnaie.search: Recherche
+app_login: Connexion
+user_registration: Inscription
+app_logout: Déconnection
+app_profile: Profil
+'Liste des cryptomonnaies': 'Liste des cryptomonnaies'
+Cryptomonnaies: Cryptomonnaies
+'Création cryptomonnaie :': 'Création cryptomonnaie :'
+Enregistrer: Enregistrer
+'Avertissement !': 'Avertissement !'
+'Vous êtes en train de supprimer le crypto suivant :': 'Vous êtes en train de supprimer le crypto suivant :'
+'Nom :': 'Nom :'
+'Sigle :': 'Sigle :'
+'Price :': 'Price :'
+'Projet :': 'Projet :'
+'Date de publication :': 'Date de publication :'
+Annuler: Annuler
+'Êtes vous sûr ??': 'Êtes vous sûr ??'
+Supprimer: Supprimer
+id: id
+Nom: Nom
+Sigle: Sigle
+'Market cap': Capitalisation
+projet: projet
+Categorie: Categorie
+Price: Prix
+'Date creation': 'Date creation'
+Action: Action
+Ajouter: Ajouter
+'Recherche cryptomonnaie :': 'Recherche cryptomonnaie :'
+Chercher: Chercher
+'Détails de la': 'Détails de la'
+'Publié le': 'Publié le'
+'Projet:': 'Projet:'
+'Categorie de la Crypto:': 'Categorie de la Crypto:'
+'Liste des Commentaires': 'Liste des Commentaires'
+'écrit par': 'écrit par'
+'Ajouter commentaire': 'Ajouter commentaire'
+'You are logged in as': 'Vous êtes connecté en tant que'
+'S''inscrire': 'S''inscrire'
+'Ajout favoris :': 'Ajout favoris :'
+'Log in!': Connecté
+Password: 'Mot de passe'
+'Sign in': 'Se connecter'
+'Ajouter un favoris': 'Ajouter un favoris'
+Bienvenue: Bienvenue
