@@ -57,6 +57,7 @@ class NoteController extends AbstractController
             $use=$this->getUser();
             $use->removeNote($ancienneNote);
             $crypto->removeNote($ancienneNote);
+          
             $em->flush();
         }
         
