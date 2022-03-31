@@ -24,7 +24,7 @@ class UserFixtures extends Fixture
     {
         $userTest = new User();
         $userTest->setEmail("test@gmail.com")
-            ->setRoles(["ROLE_USER,ROLE_ADMIN"])
+            ->setRoles(["ROLE_USER","ROLE_ADMIN"])
             ->setPseudo("ADMIN")
             ->setPassword($this->passwordEncoder->encodePassword(
             $userTest, 'test'

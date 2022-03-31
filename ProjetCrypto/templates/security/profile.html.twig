@@ -25,7 +25,9 @@
         <td>{{favori.categorie}}</td>
         <td>{{favori.price}}</td>
         <td>{{favori.dateCreation|date('Y-m-d')}}</td>
-        <td><a href="{{ path('favoris.delete', {id: favori.id}) }}"class="btn btn-danger">{{'Enlever'|trans}}</td>
+        <td>
+            <a href="{{ path('favoris.delete', {id: favori.id}) }}"class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
 
     </tr>
     {% endfor %}
@@ -58,8 +60,10 @@
         <td>{{crypto.categorie}}</td>
         <td>{{crypto.price}}</td>
         <td>{{crypto.dateCreation|date('Y-m-d')}}</td>
-        <td><a href="{{ path('cryptomonnaie.delete', {id: crypto.id}) }}"class="btn btn-danger">{{'Supprimer'|trans}}</td>
-        <td> <a href="{{ path('cryptomonnaie.edit', {id: crypto.id}) }}">{{'Modifier'|trans}}</td>
+        <td>
+                    <a href="{{ path('cryptomonnaie.delete', {id: crypto.id}) }}"class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a href="{{ path('cryptomonnaie.edit', {id: crypto.id}) }}"class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+        </td>
     </tr>
 
 {% endfor %}

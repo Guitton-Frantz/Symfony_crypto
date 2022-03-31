@@ -24,7 +24,7 @@ class Cryptomonnaie
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint")
      */
     private $MarketCap;
 
@@ -70,7 +70,7 @@ class Cryptomonnaie
     private $commentaire;
 
     /**
-     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="crypto")
+     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="crypto",cascade={"remove"})
      */
     private $notes;
 
