@@ -58,6 +58,16 @@ To run this project, you may have to modify your .env file
 
  _DATABASE_URL="mysql://**user**:**password**@**database ip**:**database port**/**table**?serverVersion=**your server version**&charset=utf8mb4"_
 
+## Fixtures
+**email** : **password**
+
+`test@gmail.com` : `test`
+
+`marius@gmail.com` : `marius`
+
+`evan@gmail.com` : `evan`
+
+
 
 ## Screenshots
 

@@ -40,6 +40,24 @@ class NoteController extends AbstractController
      */
     public function create(Request $request,Cryptomonnaie $crypto,EntityManagerInterface $em) : Response
     {
+     
+        $trouver=0;
+        $tab=$crypto->getNotes();
+        foreach ($tab as $not ){ 
+            if ($not->getUser()==$this->getUser()){
+                $trouver=1;
+                $ancienneNote=$not;
+            }
+        }
+       
+        if($trouver==1){
+            $em = $this->getDoctrine()->getManager();
+            $use=$this->getUser();
+            $use->removeNote($ancienneNote);
+            $crypto->removeNote($ancienneNote);
+            $em->flush();
+        }
+        
         $note = new Note();
         $form = $this->createForm(NoteType::class, $note);
         $form->handleRequest($request);
@@ -54,10 +72,15 @@ class NoteController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('cryptomonnaie.list');
 
+        
         }
+
         return $this->render('note/create.html.twig', [
             'form' => $form->createView(),
         ]);
+        
     }
-}
 
+
+
+}
