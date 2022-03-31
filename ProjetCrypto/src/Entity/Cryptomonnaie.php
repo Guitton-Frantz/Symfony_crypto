@@ -65,7 +65,7 @@ class Cryptomonnaie
     private $fans;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="cryptomonnaie")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="cryptomonnaie",cascade={"remove"})
      */
     private $commentaire;
 

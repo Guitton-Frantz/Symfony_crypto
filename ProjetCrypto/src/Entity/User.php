@@ -43,7 +43,7 @@ class User implements UserInterface
     private $favoris;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user",cascade={"remove"})
      */
     private $commentaires;
 
@@ -57,6 +57,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Note::class, mappedBy="user")
      */
     private $notes;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $pseudo;
 
     public function __construct()
     {
@@ -258,6 +263,18 @@ class User implements UserInterface
                 $cryptosCreated->setCreator(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }

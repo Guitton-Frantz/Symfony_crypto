@@ -19,6 +19,10 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
+            ->add('pseudo', TextType::class,[
+                'constraints' => [new NotBlank(),
+                    new Length(['max' => 30]),]
+            ])
             ->add('password', PasswordType::class, [
                 'constraints' => [new NotBlank(),
                     new Length(['max' => 255]),

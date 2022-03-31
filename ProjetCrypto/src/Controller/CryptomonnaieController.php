@@ -123,20 +123,26 @@ class CryptomonnaieController extends AbstractController
      */
     public function delete(Request $request, Cryptomonnaie $crypto, EntityManagerInterface $em) : Response
     {
-        $form = $this->createFormBuilder()
-            ->setAction($this->generateUrl('cryptomonnaie.delete', ['id' => $crypto->getId()]))
-            ->getForm();
-        $form->handleRequest($request);
-        if (!$form->isSubmitted() || !$form->isValid()) {
-            return $this->render('cryptomonnaie/delete.html.twig', [
-                'crypto' => $crypto,
-                'form' => $form->createView(),
-            ]);
+        if ($crypto->getCreator() == $this->getUser()) {
+
+
+            $form = $this->createFormBuilder()
+                ->setAction($this->generateUrl('cryptomonnaie.delete', ['id' => $crypto->getId()]))
+                ->getForm();
+            $form->handleRequest($request);
+            if (!$form->isSubmitted() || !$form->isValid()) {
+                return $this->render('cryptomonnaie/delete.html.twig', [
+                    'crypto' => $crypto,
+                    'form' => $form->createView(),
+                ]);
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($crypto);
+            $em->flush();
+            return $this->redirectToRoute('cryptomonnaie.list');
+        }else{
+            return $this->redirectToRoute('cryptomonnaie.list');
         }
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($crypto);
-        $em->flush();
-        return $this->redirectToRoute('cryptomonnaie.list');
     }
 
     /**
