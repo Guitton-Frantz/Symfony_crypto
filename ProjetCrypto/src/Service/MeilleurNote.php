@@ -1,5 +1,4 @@
 <?php
-// src/Service/MessageGenerator.php
 namespace App\Service;
 
 use App\Entity\Cryptomonnaie;
@@ -13,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\MeilleurNote;
-use EasyCorp\Bundle\EasyAdminBundle;
+
 
 
 class MeilleurNote
@@ -27,7 +26,7 @@ class MeilleurNote
         ->orderBy("moy", 'ASC')
         ->getQuery();
 
-        $avgScore = $queryAvgScore->getResult();
+        $avgScore = $queryAvgNote->getResult();
         
         return $avgScore;
     }

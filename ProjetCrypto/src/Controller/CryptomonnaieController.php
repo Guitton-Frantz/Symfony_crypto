@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\MeilleurNote;
 /**
  * @Route("/{_locale}")
  */
@@ -27,11 +26,17 @@ class CryptomonnaieController extends AbstractController
      */
     public function list(EntityManagerInterface $em): Response
     {
+        $cryptos = $em->getRepository(Cryptomonnaie::class)->findAll();
+        return $this->render('cryptomonnaie/list.html.twig', [
+            'cryptos' => $cryptos,
+        ]);
+
+        /*
         $meilleurNote=new MeilleurNote();
         $cryptos = $meilleurNote->meilleurCrypto();
         return $this->render('cryptomonnaie/list.html.twig', [
             'cryptos' => $cryptos,
-        ]);
+        ]);*/
     }
 
     /**
