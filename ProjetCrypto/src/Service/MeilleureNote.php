@@ -28,12 +28,17 @@ class MeilleureNote{
     public function meilleurCrypto()
     {
         $scoreMoy =[];
+        $nbNote=[];
+   
 
         foreach ($this->obj as $q){
             if($q->getUser()!=null){
                 $name = $q->getCrypto();
-                $scoreMoy["$name"] =0;
                 
+                $scoreMoy["$name"] =0;
+                $scoreCompte["$name"."compteur"] = 0;
+               
+
             }
         }
 
@@ -41,8 +46,16 @@ class MeilleureNote{
             if($q->getUser()!=null){
                 $name = $q->getCrypto();
                 $scoreMoy["$name"] += $q->getContenu();
+                $scoreCompte["$name"."compteur"] += 1;
             }
         }
+
+        foreach ($scoreMoy as $score){
+           $score = $score/$scoreCompte["$name"."compteur"];
+        }
+
+
+
         arsort($scoreMoy);
 
         return $scoreMoy;
