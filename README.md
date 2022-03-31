@@ -68,8 +68,3 @@ To run this project, you may have to modify your .env file
 `evan@gmail.com` : `evan`
 
 
-
-## Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
