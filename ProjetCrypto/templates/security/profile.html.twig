@@ -76,13 +76,18 @@
     <tr>
         <th class="active text-center">{{'Commentaire'|trans}}</th>
         <th class="active text-center">{{'Nom'|trans}}</th>
+        <th class="active text-center">{{'Action'|trans}}</th>
     </tr>
     {% for com in comments  %}
     <tr>
                <td>{{com.com}}</td>
                <td><a href="{{ path('cryptomonnaie.show', {id: com.getCryptomonnaie.id}) }}">{{com.getCryptomonnaie.name}}</a></td>
-
+               <td>
+                    <a href="{{ path('commentaire.delete', {id: com.id}) }}"class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a href="{{ path('commentaire.edit', {id: com.id}) }}"class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+               </td>
     </tr>
-</table>
 {% endfor %}
+</table>
+
 {% endblock %}

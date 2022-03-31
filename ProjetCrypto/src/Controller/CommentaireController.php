@@ -33,11 +33,12 @@ class CommentaireController extends AbstractController
 
 /**
      * Créer un nouveau commetaire.
-     * Require ROLE_USER for *every* controller method in this class.
+     * Require ROLE_USER
      *
      * @IsGranted("ROLE_USER")
      * @Route("/cryptomonnaie/{id}/new-comm", name="commentaire.create")
      * @param Request $request
+     * @param Cryptomonnaie $crypto
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
@@ -61,5 +62,65 @@ class CommentaireController extends AbstractController
         return $this->render('commentaire/create.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * Éditer un commentaire.
+     *
+     * Require ROLE_USER
+     *
+     * @IsGranted("ROLE_USER")
+     * @Route("commentaire/{id}/edit", name="commentaire.edit")
+     * @param Request $request
+     * @param Commentaire $commentaire
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
+     */
+    public function edit(Request $request, Commentaire $commentaire, EntityManagerInterface $em) : Response
+    {
+        $form = $this->createForm(CommType::class, $commentaire);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            return $this->redirectToRoute('app_profile');
+        }
+        return $this->render('commentaire/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Supprimer une commentaire.
+     * Require ROLE_USER
+     *
+     * @IsGranted("ROLE_USER")
+     * @Route("commentaire/{id}/delete", name="commentaire.delete")
+     * @param Request $request
+     * @param Commentaire $commentaire
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function delete(Request $request, Commentaire $commentaire, EntityManagerInterface $em) : Response
+    {
+        if ($commentaire->getUser() == $this->getUser()) {
+
+
+            $form = $this->createFormBuilder()
+                ->setAction($this->generateUrl('commentaire.delete', ['id' => $commentaire->getId()]))
+                ->getForm();
+            $form->handleRequest($request);
+            if (!$form->isSubmitted() || !$form->isValid()) {
+                return $this->render('commentaire/delete.html.twig', [
+                    'commentaire' => $commentaire,
+                    'form' => $form->createView(),
+                ]);
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($commentaire);
+            $em->flush();
+            return $this->redirectToRoute('app_profile');
+        }else{
+            return $this->redirectToRoute('app_profile');
+        }
     }
 }

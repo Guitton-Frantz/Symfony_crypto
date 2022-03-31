@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="col-sm-10">
-                   <h5> -{{'Createur de la Crypto:'|trans}} {{ crypto.creator.pseudo }}</h5>
+                   <h5> -{{'Createur de la Crypto:'|trans}} {{ crypto.creator }}</h5>
                 </div>
 
             </div>
@@ -59,7 +59,7 @@
                 {{comme.com}}
               </div>
               <div class="col-sm-10">
-                {{'écrit par'|trans}} {{comme.getUser.pseudo}}</p>
+                {{'écrit par: '|trans}} {{comme.getUser.pseudo}}</p>
               </div>
              </div>
               {% endfor %}
@@ -71,7 +71,7 @@
                 {{notes.contenu}}/5
               </div>
               <div class="col-sm-10">
-                {{'écrit par'|trans}} {{notes.getUser.pseudo}}</p>
+                {{'donnée par: '|trans}} {{notes.getUser.pseudo}}</p>
               </div>
              </div>
 
