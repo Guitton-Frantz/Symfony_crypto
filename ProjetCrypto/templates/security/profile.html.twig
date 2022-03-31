@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<td>{{'Bienvenue'|trans}} : {{ last_username }}</td>
+<td>{{'Bienvenue'|trans}} : {{ user.pseudo }}</td>
 <h2>{{'Favoris'|trans}}</h2>
 <table class="table text-center">
     <tr>
@@ -18,12 +18,15 @@
     {% for favori in favoris  %}
     <tr>
         <td>{{favori.id}}</td>
-        <td>{{favori.name}}</td>
+        <td><a href="{{ path('cryptomonnaie.show', {id: favori.id}) }}">{{favori.name}}</td>
         <td>{{favori.slug}}</td>
         <td>{{favori.marketCap}}</td>
         <td>{{favori.projet}}</td>
+        <td>{{favori.categorie}}</td>
         <td>{{favori.price}}</td>
         <td>{{favori.dateCreation|date('Y-m-d')}}</td>
+        <td><a href="{{ path('favoris.delete', {id: favori.id}) }}"class="btn btn-danger">{{'Enlever'|trans}}</td>
+
     </tr>
     {% endfor %}
 </table>
@@ -34,30 +37,48 @@
 <table class="table text-center">
 
 <tr>
-<th class="active text-center"></th>
-<th class="active text-center">{{'Nom'|trans}}</th>
-<th class="active text-center">{{'Sigle'|trans}}</th>
-<th class="active text-center">{{'Market cap'|trans}}</th>
-<th class="active text-center">{{'projet'|trans}}</th>
-<th class="active text-center">{{'Categorie'|trans}}</th>
-<th class="active text-center">{{'Price'|trans}}</th>
-<th class="active text-center">{{'Date creation'|trans}}</th>
-<th class="active text-center">{{'Action'|trans}}</th>
+    <th class="active text-center">{{'id'|trans}}</th>
+    <th class="active text-center">{{'Nom'|trans}}</th>
+    <th class="active text-center">{{'Sigle'|trans}}</th>
+    <th class="active text-center">{{'Market cap'|trans}}</th>
+    <th class="active text-center">{{'projet'|trans}}</th>
+    <th class="active text-center">{{'Categorie'|trans}}</th>
+    <th class="active text-center">{{'Price'|trans}}</th>
+    <th class="active text-center">{{'Date creation'|trans}}</th>
+    <th class="active text-center">{{'Action'|trans}}</th>
 </tr>
 {% for crypto in cryptoCreated  %}
 
-<tr>
-<td>{{crypto.id}}</td>
-<td>{{crypto.name}}</td>
-<td>{{crypto.slug}}</td>
-<td>{{crypto.marketCap}}</td>
-<td>{{crypto.projet}}</td>
-<td>{{crypto.price}}</td>
-<td>{{crypto.dateCreation|date('Y-m-d')}}</td>
-</tr>
+    <tr>
+        <td>{{crypto.id}}</td>
+        <td><a href="{{ path('cryptomonnaie.show', {id: crypto.id}) }}">{{crypto.name}}</td>
+        <td>{{crypto.slug}}</td>
+        <td>{{crypto.marketCap}}</td>
+        <td>{{crypto.projet}}</td>
+        <td>{{crypto.categorie}}</td>
+        <td>{{crypto.price}}</td>
+        <td>{{crypto.dateCreation|date('Y-m-d')}}</td>
+        <td><a href="{{ path('cryptomonnaie.delete', {id: crypto.id}) }}"class="btn btn-danger">{{'Supprimer'|trans}}</td>
+        <td> <a href="{{ path('cryptomonnaie.edit', {id: crypto.id}) }}">{{'Modifier'|trans}}</td>
+    </tr>
 
 {% endfor %}
 </table>
 <td><a href="{{ path('cryptomonnaie.create')}}" class="btn btn-success">{{'Créer une nouvelle crypto'|trans}}</a></td>
 
+<h2>{{'Commentaire(s) laissés par vous'|trans}}</h2>
+
+<table class="table text-center">
+    <tr>
+        <th class="active text-center">{{'Commentaire'|trans}}</th>
+        <th class="active text-center">{{'Nom'|trans}}</th>
+    </tr>
+    {% for com in comments  %}
+    <tr>
+               <td>{{com.com}}</td>
+               <td><a href="{{ path('cryptomonnaie.show', {id: com.getCryptomonnaie.id}) }}">{{com.getCryptomonnaie.name}}</a></td>
+
+    </tr>
+</table>
+{% endfor %}
 {% endblock %}

@@ -62,11 +62,14 @@ class SecurityController extends AbstractController
         $favoris = $user->getFavoris();
         // Recupere les cryptos créées de l'utilisateur actuel
         $cryptoCreated = $user->getCryptosCreated();
+        $comments = $user->getCommentaires();
 
 
         return $this->render('security/profile.html.twig', ['last_username' => $lastUsername,
+            'user'=> $user,
             'favoris' => $favoris,
             'cryptoCreated'=> $cryptoCreated,
+            'comments'=>$comments,
             'error' => $error]);
     }
 
@@ -75,7 +78,7 @@ class SecurityController extends AbstractController
      * Require ROLE_USER for *every* controller method in this class.
      *
      * @IsGranted("ROLE_USER")
-     * @Route("add-favoris", name="favoris.add")
+     * @Route("/add-favoris", name="favoris.add")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -106,4 +109,34 @@ class SecurityController extends AbstractController
         return $this->render('Security/add-favoris.html.twig', [
             'form' => $form->createView(),
         ]);
-    }}
+    }
+
+    /**
+     * efface une crypto favorite.
+     * Require ROLE_USER
+     *
+     * @IsGranted("ROLE_USER")
+     * @Route("/delete-favoris/{id}", name="favoris.delete")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
+     */
+    public function deleteFavoris(Request $request, Cryptomonnaie $crypto, EntityManagerInterface $em) : Response
+    {
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('favoris.delete', ['id' => $crypto->getId()]))
+            ->getForm();
+        $form->handleRequest($request);
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            return $this->render('cryptomonnaie/delete.html.twig', [
+                'crypto' => $crypto,
+                'form' => $form->createView(),
+            ]);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $user->removeFavori($crypto);
+        $em->flush();
+        return $this->redirectToRoute('cryptomonnaie.list');
+    }
+}

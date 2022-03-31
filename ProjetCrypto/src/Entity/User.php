@@ -43,7 +43,7 @@ class User implements UserInterface
     private $favoris;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user",cascade={"remove"})
      */
     private $commentaires;
 
