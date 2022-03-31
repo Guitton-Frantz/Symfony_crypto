@@ -2,34 +2,62 @@
 
 {% block body %}
 <td>{{'Bienvenue'|trans}} : {{ last_username }}</td>
+<h2>{{'Favoris'|trans}}</h2>
+<table class="table text-center">
+    <tr>
+        <th class="active text-center">{{'id'|trans}}</th>
+        <th class="active text-center">{{'Nom'|trans}}</th>
+        <th class="active text-center">{{'Sigle'|trans}}</th>
+        <th class="active text-center">{{'Market cap'|trans}}</th>
+        <th class="active text-center">{{'projet'|trans}}</th>
+        <th class="active text-center">{{'Categorie'|trans}}</th>
+        <th class="active text-center">{{'Price'|trans}}</th>
+        <th class="active text-center">{{'Date creation'|trans}}</th>
+        <th class="active text-center">{{'Action'|trans}}</th>
+    </tr>
+    {% for favori in favoris  %}
+    <tr>
+        <td>{{favori.id}}</td>
+        <td>{{favori.name}}</td>
+        <td>{{favori.slug}}</td>
+        <td>{{favori.marketCap}}</td>
+        <td>{{favori.projet}}</td>
+        <td>{{favori.price}}</td>
+        <td>{{favori.dateCreation|date('Y-m-d')}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<td><a href="{{ path('favoris.add')}}" class="btn btn-success">{{'Ajouter un favoris'|trans}}</a></td>
+
+<h2>{{'Cryptomonnaie(s) créées par vous'|trans}}</h2>
+
 <table class="table text-center">
 
- <tr>
-            <th class="active text-center">{{'id'|trans}}</th>
-            <th class="active text-center">{{'Nom'|trans}}</th>
-            <th class="active text-center">{{'Sigle'|trans}}</th>
-            <th class="active text-center">{{'Market cap'|trans}}</th>
-            <th class="active text-center">{{'projet'|trans}}</th>
-            <th class="active text-center">{{'Categorie'|trans}}</th>
-            <th class="active text-center">{{'Price'|trans}}</th>
-            <th class="active text-center">{{'Date creation'|trans}}</th>
-        </tr>
-{% for favori in favoris  %}
+<tr>
+<th class="active text-center"></th>
+<th class="active text-center">{{'Nom'|trans}}</th>
+<th class="active text-center">{{'Sigle'|trans}}</th>
+<th class="active text-center">{{'Market cap'|trans}}</th>
+<th class="active text-center">{{'projet'|trans}}</th>
+<th class="active text-center">{{'Categorie'|trans}}</th>
+<th class="active text-center">{{'Price'|trans}}</th>
+<th class="active text-center">{{'Date creation'|trans}}</th>
+<th class="active text-center">{{'Action'|trans}}</th>
+</tr>
+{% for crypto in cryptoCreated  %}
 
-
-            <tr>
-                <td>{{favori.id}}</td>
-                <td>{{favori.name}}</td>
-                <td>{{favori.slug}}</td>
-                <td>{{favori.marketCap}}</td>
-                <td>{{favori.projet}}</td>
-                <td>{{favori.categorie}}
-                <td>{{favori.price}}</td>
-                <td>{{favori.dateCreation|date('Y-m-d')}}</td>
-
-            </tr>
+<tr>
+<td>{{crypto.id}}</td>
+<td>{{crypto.name}}</td>
+<td>{{crypto.slug}}</td>
+<td>{{crypto.marketCap}}</td>
+<td>{{crypto.projet}}</td>
+<td>{{crypto.price}}</td>
+<td>{{crypto.dateCreation|date('Y-m-d')}}</td>
+</tr>
 
 {% endfor %}
-         <td><a href="{{ path('favoris.add')}}" class="btn btn-success"</a>{{'Ajouter un favoris'|trans}}</td>
+</table>
+<td><a href="{{ path('cryptomonnaie.create')}}" class="btn btn-success">{{'Créer une nouvelle crypto'|trans}}</a></td>
 
 {% endblock %}

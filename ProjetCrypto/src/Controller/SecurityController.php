@@ -60,9 +60,13 @@ class SecurityController extends AbstractController
         $user = ($em->getRepository(User::class)->findBy(array('email' => $lastUsername)))[0];
         // Recupere les favoris de l'utilisateur actuel
         $favoris = $user->getFavoris();
+        // Recupere les cryptos créées de l'utilisateur actuel
+        $cryptoCreated = $user->getCryptosCreated();
+
 
         return $this->render('security/profile.html.twig', ['last_username' => $lastUsername,
             'favoris' => $favoris,
+            'cryptoCreated'=> $cryptoCreated,
             'error' => $error]);
     }
 

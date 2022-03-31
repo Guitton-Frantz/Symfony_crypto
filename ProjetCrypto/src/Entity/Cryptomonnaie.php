@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CryptomonnaieRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -73,7 +74,14 @@ class Cryptomonnaie
      */
     private $notes;
 
-    
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="cryptosCreated")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $creator;
+
+
+
 
     public function __construct()
     {
@@ -135,12 +143,12 @@ class Cryptomonnaie
         return $this;
     }
 
-    public function getDateCreation(): ?\DateTimeInterface
+    public function getDateCreation(): ?DateTimeInterface
     {
         return $this->dateCreation;
     }
 
-    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    public function setDateCreation(DateTimeInterface $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
 
@@ -256,6 +264,18 @@ class Cryptomonnaie
                 $note->setCrypto(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }

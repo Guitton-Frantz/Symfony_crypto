@@ -48,6 +48,12 @@ class User implements UserInterface
     private $commentaires;
 
     /**
+     * @ORM\OneToMany(targetEntity=Cryptomonnaie::class, mappedBy="creator", orphanRemoval=true)
+     */
+    private $cryptosCreated;
+
+
+    /**
      * @ORM\OneToMany(targetEntity=Note::class, mappedBy="user")
      */
     private $notes;
@@ -57,6 +63,7 @@ class User implements UserInterface
         $this->favoris = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
         $this->notes = new ArrayCollection();
+        $this->cryptosCreated = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -224,4 +231,35 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Cryptomonnaie>
+     */
+    public function getCryptosCreated(): Collection
+    {
+        return $this->cryptosCreated;
+    }
+
+    public function addCryptosCreated(Cryptomonnaie $cryptosCreated): self
+    {
+        if (!$this->cryptosCreated->contains($cryptosCreated)) {
+            $this->cryptosCreated[] = $cryptosCreated;
+            $cryptosCreated->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCryptosCreated(Cryptomonnaie $cryptosCreated): self
+    {
+        if ($this->cryptosCreated->removeElement($cryptosCreated)) {
+            // set the owning side to null (unless already changed)
+            if ($cryptosCreated->getCreator() === $this) {
+                $cryptosCreated->setCreator(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
