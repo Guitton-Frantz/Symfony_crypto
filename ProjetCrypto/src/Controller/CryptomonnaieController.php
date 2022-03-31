@@ -66,7 +66,7 @@ class CryptomonnaieController extends AbstractController
      * Require ROLE_USER for *every* controller method in this class.
      *
      * @IsGranted("ROLE_USER")
-     * @Route("new-crypto", name="cryptomonnaie.create")
+     * @Route("/new-crypto", name="cryptomonnaie.create")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -77,6 +77,7 @@ class CryptomonnaieController extends AbstractController
         $form = $this->createForm(CryptoType::class, $crypto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $crypto->setCreator($this->getUser());
             $em->persist($crypto);
             $em->flush();
             return $this->redirectToRoute('cryptomonnaie.list');

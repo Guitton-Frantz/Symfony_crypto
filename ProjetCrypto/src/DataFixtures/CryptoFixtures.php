@@ -21,7 +21,9 @@ class CryptoFixtures extends Fixture{
                 ->setName("Bitcoin")
                 ->setPrice(47240)
                 ->setProjet("Simplement Bitcoin")
-                ->setSlug('BTC');
+                ->setSlug('BTC')
+                ->setCreator($this->getReference(UserFixtures::MARIUS_USER_REFERENCE))
+        ;
 
         $format = "d/m/Y";
 
@@ -31,8 +33,10 @@ class CryptoFixtures extends Fixture{
             ->setMarketCap(411000000000)
             ->setName("Ethereum")
             ->setPrice(3420)
-            ->setProjet("Sprotocole d'échanges décentralisés permettant la création par les utilisateurs de contrats intelligents. Ces contrats intelligents sont basés sur un protocole informatique permettant de vérifier ou de mettre en application un contrat mutuel.")
-            ->setSlug('ETH');
+            ->setProjet("Protocole d'échanges décentralisés permettant la création par les utilisateurs de contrats intelligents. Ces contrats intelligents sont basés sur un protocole informatique permettant de vérifier ou de mettre en application un contrat mutuel.")
+            ->setSlug('ETH')
+            ->setCreator($this->getReference(UserFixtures::EVAN_USER_REFERENCE))
+        ;
         $manager->persist($btc);
         $manager->persist($eth);
         $manager->flush();

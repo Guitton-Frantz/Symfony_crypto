@@ -40,14 +40,14 @@ class CommentaireController extends AbstractController
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function create(Request $request,Cryptomonnaie $crypto,User $user,EntityManagerInterface $em) : Response
+    public function create(Request $request,Cryptomonnaie $crypto,EntityManagerInterface $em) : Response
     {
         $comm = new Commentaire();
         $form = $this->createForm(CommType::class, $comm);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $comm->setCryptomonnaie($crypto);
-            $comm->setUser($user);
+            $comm->setUser($this->getUser());
             $em->persist($comm);
             $em->flush();
             return $this->redirectToRoute('cryptomonnaie.list');
