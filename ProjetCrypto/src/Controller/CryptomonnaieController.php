@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Cryptomonnaie;
+use App\Entity\Note;
 use App\Form\CryptoSearchType;
 use App\Form\CryptoType;
+use App\Repository\NoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,7 +14,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\MeilleurNote;
+use App\Service\MeilleureNote;
 /**
  * @Route("/{_locale}")
  */
@@ -27,10 +29,28 @@ class CryptomonnaieController extends AbstractController
      */
     public function list(EntityManagerInterface $em): Response
     {
-        $meilleurNote=new MeilleurNote();
-        $cryptos = $meilleurNote->meilleurCrypto();
+        $cryptos = $em->getRepository(Cryptomonnaie::class)->findAll();
+
         return $this->render('cryptomonnaie/list.html.twig', [
             'cryptos' => $cryptos,
+        ]);
+    }
+
+    /**
+     * Lister toutes les cryptos
+     * @Route("/classement", name="cryptomonnaie.classment")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function classement(EntityManagerInterface $em):Response
+    {
+        $mn = new MeilleureNote($em->getRepository(Note::class)->findAll());
+        $cryptos = $em->getRepository(Cryptomonnaie::class)->findAll();
+
+        $mn = $mn->meilleurCrypto();
+        return $this->render('cryptomonnaie/classement.html.twig', [
+            'cryptos' => $cryptos,
+            'bestnote' => $mn,
         ]);
     }
 
