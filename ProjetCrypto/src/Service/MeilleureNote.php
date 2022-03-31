@@ -36,7 +36,7 @@ class MeilleureNote{
                 $name = $q->getCrypto();
                 
                 $scoreMoy["$name"] =0;
-                $scoreCompte["$name"."compteur"] = 0;
+                $nbNote["$name"] = 0;
                
 
             }
@@ -46,12 +46,12 @@ class MeilleureNote{
             if($q->getUser()!=null){
                 $name = $q->getCrypto();
                 $scoreMoy["$name"] += $q->getContenu();
-                $scoreCompte["$name"."compteur"] += 1;
+                $nbNote["$name"] += 1;
             }
         }
 
-        foreach ($scoreMoy as $score){
-           $score = $score/$scoreCompte["$name"."compteur"];
+        foreach ($scoreMoy as $clef=>$valeur){
+           $scoreMoy["$clef"]= $scoreMoy["$clef"]/$nbNote["$clef"];
         }
 
 
