@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Commentaire;
+use App\Entity\Note;
 
 
 /**
@@ -67,12 +68,18 @@ class Cryptomonnaie
      */
     private $commentaire;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="crypto")
+     */
+    private $notes;
+
     
 
     public function __construct()
     {
         $this->fans = new ArrayCollection();
         $this->commentaire = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -217,6 +224,36 @@ class Cryptomonnaie
             // set the owning side to null (unless already changed)
             if ($commentaire->getCryptomonnaie() === $this) {
                 $commentaire->setCryptomonnaie(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Note>
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Note $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->setCrypto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Note $note): self
+    {
+        if ($this->notes->removeElement($note)) {
+            // set the owning side to null (unless already changed)
+            if ($note->getCrypto() === $this) {
+                $note->setCrypto(null);
             }
         }
 
