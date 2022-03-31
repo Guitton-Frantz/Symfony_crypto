@@ -29,16 +29,12 @@ class MeilleureNote{
     {
         $scoreMoy =[];
 
-        foreach ($this->obj as $q) {
-            $name = $q->getCrypto();
-
-            $scoreMoy[] = 0;
-        }
+        
         foreach ($this->obj as $q){
             $name = $q->getCrypto();
             $scoreMoy["$name"] =+ $q->getContenu();
         }
-        rsort($scoreMoy);
+        arsort($scoreMoy);
 
         return $scoreMoy;
 
