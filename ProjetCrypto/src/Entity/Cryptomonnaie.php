@@ -280,5 +280,10 @@ class Cryptomonnaie
         return $this;
     }
 
-   
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+
 }
