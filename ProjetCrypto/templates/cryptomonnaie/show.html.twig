@@ -17,34 +17,30 @@
         <div class="media-body">
             <div class="row">
                 <div class="col-sm-10">
-                    <h3 class="media-heading"><strong>Nom: {{ crypto.name }}</strong> <i>({{ crypto.slug }})</i></h3>
+                    <h3 class="media-heading"><strong>{{'Nom'|trans}}: {{ crypto.name }}</strong> <i>({{ crypto.slug }})</i></h3>
                 </div>
                
                 {% if nb != 0 %}
 
                   <div class="col-sm-10">
-                      <h5>-{{' Moyenne '|trans}}: {{ moynote }}/5</h5>
+                      <h5>-{{'Moyenne'|trans}}: {{ moynote }}/5</h5>
                   </div>
                 {%else%}
                     <div class="col-sm-10">
-                      <h5>-{{' Moyenne '|trans}}: Pas de note encore</h5>
+                      <h5>-{{'Moyenne'|trans}}: Pas de note encore</h5>
                   </div>
                 {%endif%}
 
                 <div class="col-sm-10">
-                     <h5>-{{' Projet: '|trans}}{{ crypto.projet }}</strong></h5>
+                     <h5>-{{'Projet:'|trans}} {{ crypto.projet }}</strong></h5>
                 </div>
 
                 <div class="col-sm-10">
-                    <h5>-{{' Publié le '|trans}}{{ crypto.dateCreation|date('m/d/Y') }}</h5>
+                    <h5>-{{'Publié le'|trans}} {{ crypto.dateCreation|date('m/d/Y') }}</h5>
                 </div>
 
                 <div class="col-sm-10">
-                     <h5>-{{' Projet: '|trans}}{{ crypto.projet }}</strong></h5>
-                </div>
-
-                <div class="col-sm-10">
-                   <h5> -{{' Categorie de la Crypto: '|trans}}{{ crypto.categorie }}</h5>
+                   <h5> -{{'Categorie de la Crypto:'|trans}} {{ crypto.categorie }}</h5>
                 </div>
 
             </div>
@@ -59,7 +55,7 @@
                 {{comme.com}}
               </div>
               <div class="col-sm-10">
-                {{'écrit par  '|trans}}{{comme.getUser.email}}</p>
+                {{'écrit par'|trans}} {{comme.getUser.email}}</p>
               </div>
              </div>
               {% endfor %}
@@ -71,7 +67,7 @@
                 {{notes.contenu}}/5
               </div>
               <div class="col-sm-10">
-                {{'écrit par  '|trans}}{{notes.getUser.email}}</p>
+                {{'écrit par'|trans}} {{notes.getUser.email}}</p>
               </div>
              </div>
 

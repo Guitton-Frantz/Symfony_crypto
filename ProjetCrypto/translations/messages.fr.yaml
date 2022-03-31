@@ -9,6 +9,7 @@ Cryptomonnaies: Cryptomonnaies
 Enregistrer: Enregistrer
 'Avertissement !': 'Avertissement !'
 'Vous êtes en train de supprimer le crypto suivant :': 'Vous êtes en train de supprimer le crypto suivant :'
+Moyenne: Moyenne
 'Nom :': 'Nom :'
 'Sigle :': 'Sigle :'
 'Price :': 'Price :'
@@ -44,3 +45,6 @@ Password: 'Mot de passe'
 'Sign in': 'Se connecter'
 'Ajouter un favoris': 'Ajouter un favoris'
 Bienvenue: Bienvenue
+'Liste des notes': 'Liste des notes'
+'Ajouter une note': 'Ajouter une note'
+'Création de la note (/5):': 'Création de la note (/5):'
