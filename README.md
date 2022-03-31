@@ -60,8 +60,11 @@ To run this project, you may have to modify your .env file
 
 ## Fixtures
 **email** : **password**
+
 `test@gmail.com` : `test`
+
 `marius@gmail.com` : `marius`
+
 `evan@gmail.com` : `evan`
 
 
