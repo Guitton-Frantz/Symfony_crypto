@@ -37,7 +37,7 @@ class CryptomonnaieController extends AbstractController
 
     /**
      * Lister toutes les cryptos
-     * @Route("/classement", name="cryptomonnaie.classment")
+     * @Route("/classement", name="cryptomonnaie.classement")
      * @param EntityManagerInterface $em
      * @return Response
      */
