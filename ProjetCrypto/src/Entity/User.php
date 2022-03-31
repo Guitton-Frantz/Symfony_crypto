@@ -58,6 +58,11 @@ class User implements UserInterface
      */
     private $notes;
 
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $pseudo;
+
     public function __construct()
     {
         $this->favoris = new ArrayCollection();
@@ -258,6 +263,18 @@ class User implements UserInterface
                 $cryptosCreated->setCreator(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }
