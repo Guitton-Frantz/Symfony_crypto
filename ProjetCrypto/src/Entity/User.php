@@ -54,7 +54,7 @@ class User implements UserInterface
 
 
     /**
-     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="user", orphanRemoval=true)
      */
     private $notes;
 

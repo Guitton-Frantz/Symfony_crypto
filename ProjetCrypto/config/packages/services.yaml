@@ -1,2 +1,2 @@
 parameters:
-  languages: {'fr':'Français','en':'English','de':'Deutsch'}
+  languages: {'fr':'Français','en':'English'}

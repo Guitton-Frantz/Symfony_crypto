@@ -23,8 +23,10 @@
                 <td>{{crypto.categorie}}</td>
                 <td>{{crypto.price}}</td>
                 <td>{{crypto.dateCreation|date('Y-m-d')}}</td>
-                <td><a href="{{ path('cryptomonnaie.delete', {id: crypto.id}) }}"class="btn btn-danger">Supprimer</td>
-                <td> <a href="{{ path('cryptomonnaie.edit', {id: crypto.id}) }}">Modifier</td>
+                <td>
+                    <a href="{{ path('cryptomonnaie.delete', {id: crypto.id}) }}"class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a href="{{ path('cryptomonnaie.edit', {id: crypto.id}) }}"class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                </td>
 
             </tr>
 
