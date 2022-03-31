@@ -11,7 +11,9 @@
             <th class="active text-center">{{'Categorie'|trans}}</th>
             <th class="active text-center">{{'Price'|trans}}</th>
             <th class="active text-center">{{'Date creation'|trans}}</th>
-            <th class="active text-center">{{'Action'|trans}}</th>
+            {% if app.user %}
+                <th class="active text-center">{{'Action'|trans}}</th>
+            {% endif %}
         </tr>
          {% for crypto in cryptos %}
             <tr>
@@ -23,16 +25,18 @@
                 <td>{{crypto.categorie}}</td>
                 <td>{{crypto.price}}</td>
                 <td>{{crypto.dateCreation|date('Y-m-d')}}</td>
+                {% if app.user %}
                 <td>
                     <a href="{{ path('cryptomonnaie.delete', {id: crypto.id}) }}"class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
                     <a href="{{ path('cryptomonnaie.edit', {id: crypto.id}) }}"class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
                 </td>
-
+                {% endif %}
             </tr>
 
          {% endfor %}
          </table>
-         <td><a href="{{ path('cryptomonnaie.create')}}" class="btn btn-success">{{'Ajouter'|trans}}</a></td>
-
+         {% if app.user %}
+            <td><a href="{{ path('cryptomonnaie.create')}}" class="btn btn-success">{{'Ajouter'|trans}}</a></td>
+         {% endif %}
 
 {% endblock %}

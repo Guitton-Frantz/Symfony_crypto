@@ -50,8 +50,8 @@ class MeilleureNote{
             }
         }
 
-        foreach ($scoreMoy as $score){
-           $score = $score/$scoreCompte["$name"."compteur"];
+        foreach ($scoreMoy as $key => $value){
+           $scoreMoy["$key"] = $scoreMoy["$key"]/$scoreCompte["$key"."compteur"];
         }
 
 
