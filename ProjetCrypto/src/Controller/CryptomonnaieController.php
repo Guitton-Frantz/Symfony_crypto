@@ -113,7 +113,7 @@ class CryptomonnaieController extends AbstractController
      * Require ROLE_USER for *every* controller method in this class.
      *
      * @IsGranted("ROLE_USER")
-     * @Route("cryptomonnaie/{id}/edit", name="cryptomonnaie.edit")
+     * @Route("/cryptomonnaie/{id}/edit", name="cryptomonnaie.edit")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -136,7 +136,7 @@ class CryptomonnaieController extends AbstractController
      * Require ROLE_USER for *every* controller method in this class.
      *
      * @IsGranted("ROLE_USER")
-     * @Route("stage/{id}/delete", name="cryptomonnaie.delete")
+     * @Route("/cryptomonnaie/{id}/delete", name="cryptomonnaie.delete")
      * @param Request $request
      * @param Cryptomonnaie $crypto
      * @param EntityManagerInterface $em
