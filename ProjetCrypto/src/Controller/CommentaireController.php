@@ -32,7 +32,7 @@ class CommentaireController extends AbstractController
     }
 
 /**
-     * Créer un nouveau commetaire.
+     * Créer un nouveau commentaire.
      * Require ROLE_USER
      *
      * @IsGranted("ROLE_USER")
@@ -90,7 +90,7 @@ class CommentaireController extends AbstractController
     }
 
     /**
-     * Supprimer une commentaire.
+     * Supprimer un commentaire.
      * Require ROLE_USER
      *
      * @IsGranted("ROLE_USER")

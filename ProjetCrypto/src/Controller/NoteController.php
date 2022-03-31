@@ -31,7 +31,7 @@ class NoteController extends AbstractController
     }
 
     /**
-     * Créer un nouveau commetaire.
+     * Créer une note.
      * Require ROLE_USER for *every* controller method in this class.
      *
      * @IsGranted("ROLE_USER")
